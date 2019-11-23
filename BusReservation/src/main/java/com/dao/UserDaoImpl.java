@@ -7,7 +7,6 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
-import com.model.Admin;
 import com.model.Bus;
 import com.model.Users;
 
