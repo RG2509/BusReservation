@@ -1,7 +1,15 @@
 package com.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /*create table passenger(
@@ -14,14 +22,20 @@ gender varchar(10));*/
 
 public class Passenger {
 	@Id
-          private int p_id;
+          private String p_id;
           private String p_name;
           private String mobile_no;
           private String gender;
-		public int getP_id() {
+          
+      	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+    	@JoinColumn(name="p_id")
+    	private Bookings booking;
+      	
+		
+		public String getP_id() {
 			return p_id;
 		}
-		public void setP_id(int p_id) {
+		public void setP_id(String p_id) {
 			this.p_id = p_id;
 		}
 		public String getP_name() {

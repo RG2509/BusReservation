@@ -140,11 +140,7 @@ public class AdminController {
 	 
 	  @RequestMapping(value = "/addroute", method = RequestMethod.POST)
 	  public ModelAndView addRoute(HttpServletRequest request, HttpServletResponse response,  @ModelAttribute("route") Route route) {
-		/*
-		 * String route_id = route.getRoute_id(); String source = route.getSource();
-		 * String destination = route.getDestination(); String distance =
-		 * route.getDistance();
-		 */
+		
 		  
 		boolean flag=adminservice.addRoute(route);
 	    if(flag) {
@@ -182,6 +178,8 @@ public class AdminController {
 		  ModelAndView mav = new ModelAndView("search");
 		  mav.addObject("buslist", list);
 		  return mav;
+		  
+		  
 	  }
 	  
 	 

@@ -42,6 +42,7 @@
                 <li><a href="userlogin.do">User Login</a></li>
                 <li><a href="userregister.do">User SignUp</a></li>
                 <li><a href="searchbus.do">Search</a></li>
+                <li><a href="deleteTicket.do">User SignUp</a></li>
                <!--  <li><a href="#about">About</a></li> -->
               </ul>
               </body>

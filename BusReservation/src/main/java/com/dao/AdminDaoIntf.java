@@ -15,6 +15,7 @@ public interface AdminDaoIntf {
 	boolean addBus(Bus bus);
 
 	
+	
 	boolean addRoute(Route route);
 
 	List<Bus> getBus();

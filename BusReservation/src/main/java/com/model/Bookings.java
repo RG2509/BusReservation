@@ -2,6 +2,9 @@ package com.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /*
 create table bookings(
@@ -18,17 +21,27 @@ p_id int references passenger(p_id)
 public class Bookings {
       
 	@Id
-	private int ticket_id;
+	private String ticket_id;
 	private String no_of_passengers;
 	private String time_of_journey;
 	private String date_of_journey;
 	private String bus_id;
-	private int p_id;
-	public int getTicket_id() {
+	private String p_id;
+	
+	@OneToOne
+	@JoinColumn(name="p_id")
+	private Passenger passenger;
+	
+	
+	
+	public String getTicket_id() {
 		return ticket_id;
 	}
-	public void setTicket_id(int ticket_id) {
+	public void setTicket_id(String ticket_id) {
 		this.ticket_id = ticket_id;
+	}
+	public void setP_id(String p_id) {
+		this.p_id = p_id;
 	}
 	public String getNo_of_passengers() {
 		return no_of_passengers;
@@ -54,12 +67,7 @@ public class Bookings {
 	public void setBus_id(String bus_id) {
 		this.bus_id = bus_id;
 	}
-	public int getP_id() {
-		return p_id;
-	}
-	public void setP_id(int p_id) {
-		this.p_id = p_id;
-	}
+	
 	public Bookings() {
 		super();
 	}
