@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.model.Admin;
+import com.model.Bookings;
 import com.model.Bus;
+import com.model.Passenger;
 import com.model.Users;
 import com.service.AdminServiceIntf;
 import com.service.UserServiceIntf;
@@ -84,4 +86,33 @@ public class Usercontroller {
 	    return mav;
 	  }
 	
+	  
+	  
+	  
+	  
+	  
+	  //cancel ticket
+	  
+	  @RequestMapping(value = "/userlogin", method = RequestMethod.GET)
+	  public ModelAndView cancelTicket(HttpServletRequest request, HttpServletResponse response,   @ModelAttribute Users iuser)
+	  {
+	  
+		  
+		   ModelAndView mav = null;
+		    Users user = userservice.validateUser(iuser);
+		    System.out.println("user="+user);
+		    if (user != null) {
+		      mav = new ModelAndView("success");
+		     // mav.addObject("password",iuser.getPassword());
+		      //session manage
+		      HttpSession session= request.getSession();
+		      session.setAttribute("email", iuser.getEmail());
+		    
+		    } else {
+		      mav = new ModelAndView("userlogin");
+		      mav.addObject("status", "Username or Password is wrong!!");
+		    }
+		    return mav;
+		  }
+	  }
 }
