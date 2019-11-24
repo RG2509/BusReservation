@@ -21,6 +21,11 @@ public class Users {
 
     private String fullname;
     private String mobile;
+    @Id
+    private String email;
+    private String password;
+
+   
     public String getFullname() {
 		return fullname;
 	}
@@ -53,10 +58,7 @@ public class Users {
 		this.password = password;
 	}
 
-	@Id
-    private String email;
-    private String password;
-
+	
 	public Users() {
 		super();
 	}

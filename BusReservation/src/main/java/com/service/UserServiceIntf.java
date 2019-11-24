@@ -16,6 +16,6 @@ public boolean registerPassenger(Users user) ;
 
 	public Users validateUser(Users user);
 
-	public List<Bus> busBooking(String source, String destination,String date_of_journey, String no_of_passengers);
+	public List<Bus> busbooking(String source, String destination,Date dt_of_booking , int no_of_passengers);
 
 }

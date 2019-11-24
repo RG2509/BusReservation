@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.EntityManager;import javax.persistence.OneToMany;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.model.Admin;
@@ -20,6 +21,8 @@ public class UserDaoImpl implements UserDaoIntf {
 	
 	@PersistenceContext
 	EntityManager em;
+	
+
 	
 	public Users validateUser(Users user) {
 
@@ -70,25 +73,27 @@ public class UserDaoImpl implements UserDaoIntf {
 		
 		
 
-		public List<Bus> busBooking(String source, String destination, String date_of_journey,
-				String no_of_passengers) {
-			System.out.println(source+"\n"+destination+"\n"+date_of_journey+"\n"+no_of_passengers);
+		
+
+		public List<Bus> busbooking(String source, String destination, Date dt_of_booking, int no_of_passengers) {
+			System.out.println(source+"\n"+destination+"\n"+dt_of_booking+"\n"+no_of_passengers);
 			String sql="select b FROM Bus b, Route r where r.source=:source and r.destination=:destination and b.route.route_id=r.route_id";
-			String sql1="select sum(b.no_of_passenger) FROM Bus b, Bookings b1 where b.bus_id=b1.bus.bus_id and b.bus_id=:bid";
+			String sql1="select sum(k.no_of_passengers) FROM Bus b, Bookings k where b.bus_id=k.bus.bus_id and b.bus_id=:bid and k.dt_of_booking=:dt_of_booking";
 			List<Bus> finallist = new ArrayList<Bus>();
 					
 					
 					
 			@SuppressWarnings("unchecked")
-			List<Bus> allblist = em.createQuery(sql)
+			List<Bus> allflist = em.createQuery(sql)
 			                     .setParameter("source", source)
 			                     .setParameter("destination", destination)
 			                     .getResultList();
-			for(Bus b:allblist){
+			for(Bus b:allflist){
 				long totalseat= b.getNo_of_seats();
 				long totlreservedseat=0;
 				
-				List<Object> objs =em.createQuery(sql1).setParameter("bid", b.getBus_id()).getResultList();
+				
+				List<Object> objs =em.createQuery(sql1).setParameter("bid", b.getBus_id()).setParameter("dt_of_booking", dt_of_booking).getResultList();
 				System.out.println("objs:"+objs);
 				if(objs!=null){
 					try{
@@ -96,16 +101,19 @@ public class UserDaoImpl implements UserDaoIntf {
 					}
 					catch(Exception e){}
 				}
-				
-				System.out.println("totalseat:"+totalseat+" \ntotlreservedseat:"+totlreservedseat);
+				//int totlreservedseat=(Integer)em.createQuery(sql1).getResultList().get(0);
+				System.out.println("totalseat12:"+totalseat+" \ntotlreservedseat:"+totlreservedseat+"\nno_of_passengers:"+no_of_passengers+"\n-------\n");
 				if ((totalseat-totlreservedseat)>=no_of_passengers)
+					 
 					finallist.add(b);
 					
 			}
 			
 			return finallist;
 		}
+
 		}
+		
 
 		
 

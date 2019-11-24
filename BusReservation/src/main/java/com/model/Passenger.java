@@ -6,11 +6,16 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Generated;
 
 /*create table passenger(
 p_id int  primary key, 
@@ -22,20 +27,27 @@ gender varchar(10));*/
 
 public class Passenger {
 	@Id
-          private String p_id;
+    @GeneratedValue(strategy = GenerationType.AUTO)     
+	private int p_id;
           private String p_name;
           private String mobile_no;
           private String gender;
+          @ManyToOne
+          @JoinColumn(name="booking_id")
+          private Bookings bookings;
           
-      	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-    	@JoinColumn(name="p_id")
-    	private Bookings booking;
+          
+	/*
+	 * @OneToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	 * 
+	 * @JoinColumn(name="p_id") private Bookings booking;
+	 */
       	
 		
-		public String getP_id() {
+		public int getP_id() {
 			return p_id;
 		}
-		public void setP_id(String p_id) {
+		public void setP_id(int p_id) {
 			this.p_id = p_id;
 		}
 		public String getP_name() {
@@ -58,6 +70,12 @@ public class Passenger {
 		}
 		public Passenger() {
 			super();
+		}
+		public Bookings getBookings() {
+			return bookings;
+		}
+		public void setBookings(Bookings bookings) {
+			this.bookings = bookings;
 		}
           
           

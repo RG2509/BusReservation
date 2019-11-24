@@ -17,6 +17,5 @@ public interface UserDaoIntf {
 		 
 		public Users validateUser(Users user);
 
-		List<Bus> busBooking(String source, String destination, String date_of_journey,
-				String no_of_passengers);
+		List<Bus>  busbooking(String source, String destination,Date dt_of_booking , int no_of_passengers);
 }
