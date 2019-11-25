@@ -1,8 +1,10 @@
 package com.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -50,6 +52,10 @@ public class Bookings {
 	private String pick_loc;
 	private String drop_loc;
 	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="booking_id")
+	private List<Passenger> passengers = new ArrayList<Passenger>();
+	
 	
 	public List<Passenger> getPassengers() {
 		return passengers;
@@ -57,9 +63,6 @@ public class Bookings {
 	public void setPassengers(List<Passenger> passengers) {
 		this.passengers = passengers;
 	}
-	@OneToMany
-	@JoinColumn(name="booking_id")
-	private List<Passenger> passengers;
 	
 	public String getBooking_id() {
 		return booking_id;

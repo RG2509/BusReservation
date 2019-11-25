@@ -39,6 +39,9 @@ public class Bus {
 	private String departure_time;
 	private String arrival_time;
 	
+	@OneToMany(cascade = {CascadeType.ALL})
+	@JoinColumn(name="bus_id")
+	private List<Bookings> bookings = new ArrayList<Bookings>();
 	
 	@ManyToOne
 	@JoinColumn(name="route_id")
@@ -116,6 +119,15 @@ public class Bus {
 		this.route = route;
 	}
 
+	public List<Bookings> getBookings() {
+		return bookings;
+	}
+
+	public void setBookings(List<Bookings> bookings) {
+		this.bookings = bookings;
+	}
+
+	
 	/*
 	 * @Override public String toString() { return "Bus [bus_id=" + bus_id +
 	 * ", bus_name=" + bus_name + ", bus_no=" + bus_no + ", bus_type=" + bus_type +

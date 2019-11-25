@@ -2,6 +2,7 @@ package com.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -128,7 +129,7 @@ public class Usercontroller {
 			//no_of_passengers
 			int no_of_passengers  =Integer.parseInt(request.getParameter("no_of_passengers").trim());
 			
-			//store booking erquired info in 
+			//store booking required info in 
 			session.setAttribute("source", source);
 			session.setAttribute("destination", destination);
 			session.setAttribute("dtbooking", dt_of_booking);
@@ -153,14 +154,29 @@ public class Usercontroller {
 		 Date dtbooking =(Date)session.getAttribute("dtbooking");
 		 int no_of_passengers =(Integer)session.getAttribute("no_of_passengers");
 		 
+		 System.out.println("dtbooking:"+dtbooking);
+		 
+		 
 		Bookings bookings = new Bookings();
-		Bus b = new Bus(); b.setBus_id(busid);
+		
+		Bus b = new Bus();
+		b.setBus_id(busid);
 		bookings.setBus(b);
+		
 		bookings.setDrop_loc(dest);
 		bookings.setPick_loc(src);
 		bookings.setDt_of_booking(dtbooking);
 		bookings.setNo_of_passengers(no_of_passengers);
 		bookings.setTotal_fare(no_of_passengers*fare);
+		bookings.setBooking_id("B"+new Date().getTime());
+		
+		
+		Users users = new Users();
+		String email=(String)session.getAttribute("email");
+		users.setEmail(email);
+		
+		System.out.println("busid:"+busid);
+		bookings.setUser(users);
 		
 		session.setAttribute("bookings", bookings);
 		
@@ -173,53 +189,83 @@ public class Usercontroller {
 	 
 	 @RequestMapping(value = "/booking3", method = RequestMethod.POST)
 		public ModelAndView booking3(HttpServletRequest request,HttpServletResponse response, HttpSession session) throws ParseException {
-	
-		 String pname=request.getParameter("pname");
-		 String phone = request.getParameter("phone");
-		 String gender = request.getParameter("gender");
-		 
-		 Passenger passenger = new Passenger();
-		 passenger.setGender(gender);
-		 passenger.setMobile_no(phone);
-		 passenger.setP_name(pname);
-		 
-		 Bookings bookings =(Bookings)session.getAttribute("bookings");
-		 
-		 ModelAndView mav = new ModelAndView("passengerform");
-			mav.addObject("booking",bookings);
-			return mav;
 			
+			
+		
+		  String pname=request.getParameter("p_name"); 
+		  String phone = request.getParameter("mobile_no"); 
+		  String gender =  request.getParameter("gender");
+		  
+		  Passenger passenger = new Passenger();
+		  passenger.setP_name(pname);
+		  passenger.setMobile_no(phone);
+		  passenger.setGender(gender);
+		  passenger.setP_id(new Date().getTime());
+		  
+		  
+		  Bookings bookings =(Bookings)session.getAttribute("bookings");
+		  bookings.getPassengers().add(passenger);
+		  passenger.setBookings(bookings);
+		  session.setAttribute("booking", bookings);
+		  
+		  
+		  int flag = userservice.addBook(bookings);
+		  System.out.println(flag);
+		  ModelAndView mav = new ModelAndView("makepayment");
+		  mav.addObject("booking",bookings);
+return mav;
+		 
 			
 	 }
 	 
-}
+	 @RequestMapping(value = "/booking4", method = RequestMethod.POST)
+		public ModelAndView makepayment(HttpServletRequest request,HttpServletResponse response, HttpSession session) throws ParseException {
+	    
+		 // read payment info and then persist :  booking , passenger , payment
+		
+		 
+		 ModelAndView mav = new ModelAndView("mybill");
+		// mav.addObject("booking",bookings);
+		 return mav;
+			
+			
+	 }
+	/*
+	 * //history
+	 * 
+	 * @RequestMapping(value = "/result", method = RequestMethod.GET) public
+	 * ModelAndView result(HttpSession session){
+	 * 
+	 * String email = (String)session.getAttribute("email");
+	 * 
+	 * List<Bookings> lis = new ArrayList<Bookings>();
+	 * 
+	 * lis = userservice.result(email); System.out.println(lis);
+	 * System.out.println("size"+lis.size()); for(int i = 0; i < lis.size(); i++) {
+	 * System.out.println(lis.get(i)); } ModelAndView mav = new
+	 * ModelAndView("result"); mav.addObject("booking_list",lis); return mav; }
+	 */
 
-	// cancel ticket
-/*
- * @RequestMapping(value = "/deleteTicket", method = RequestMethod.GET) public
- * ModelAndView cancelTicket(HttpServletRequest request, HttpServletResponse
- * response) {
- * 
- * ModelAndView mav = new ModelAndView("deleteTicket");
- * mav.addObject("bookings", new Users()); return mav; }
- * 
- * 
- * 
- * @RequestMapping(value="/deleteTicket", method=RequestMethod.POST) public
- * ModelAndView deleteTicket(HttpServletRequest request ,HttpServletResponse
- * response, @ModelAttribute Bookings book) {
- * 
- * String ticket_id = request.getParameter("ticket_id"); String p_id =
- * request.getParameter("p_id");
- * 
- * 
- * boolean bookings = userservice.deleteTicket(ticket_id, p_id); ModelAndView
- * mav = new ModelAndView("success"); mav.addObject("book", bookings);
- *  return
- * mav;
- * 
- * 
- * } }
- * 
- * 
- */
+	
+	 
+	 @RequestMapping(value = "/cancel_booking", method = RequestMethod.GET)
+	 public ModelAndView cancelBooking(HttpServletRequest request, HttpServletResponse response){
+		 
+	 	 ModelAndView mav = new ModelAndView("cancel_booking");
+	 	 mav.addObject("bookings",new Bookings());
+	 	 return mav;
+	  } 
+	 
+	 @RequestMapping(value = "/cancel_booking", method = RequestMethod.POST)
+		public ModelAndView deleteTicket(HttpServletRequest request,HttpServletResponse response, @ModelAttribute Bookings book)
+	 {
+		 String booking_id = request.getParameter("booking_id");
+		 String email = request.getParameter("email");
+		 System.out.println(booking_id+" "+email);
+		 boolean flag=userservice.cancelBooking(booking_id,email);
+			
+			ModelAndView mav = new ModelAndView("success");
+			mav.addObject("flag",flag);
+			return mav;
+		} 
+}

@@ -14,17 +14,17 @@
 
 
 
-     <form id="regForm"  action="booking3.do" method="post" >
+     <form id="regForm"  action="booking3.do" modelAttribute="p"  method="post" >
         <table>
         <tr>
         <td>
-          <input type="text"  name="pname" id=""pname"" placeholder="Full Name"  class="input1"/></td></tr>
+          <input type="text"  name="p_name" id="p_name"   placeholder="Full Name"  class="input1"/></td></tr>
    <tr><td> <div id="id1" style="color: red"></div></td>
           </tr>
-         <tr><td>  <input type="text"  name="phone"  id=""phone"" placeholder="Mobile Number"  class="input1"/></td></tr>
+         <tr><td>  <input type="text"  name="mobile_no"  id="p_mobile" placeholder="Mobile Number"  class="input1"/></td></tr>
           <tr> <td><div id="id4" style="color: red"></div></td>
            </tr>
-          <tr><td> <input  type="text" name=""gender""  id=""gender"" placeholder="Email"  class="input1"/></td></tr>
+          <tr><td> <input  type="text" name="gender"  id="gender" placeholder="gender"  class="input1"/></td></tr>
          <tr> <td><div id="id3" style="color: red"></div></td>
 
           <tr><td> <button type="submit" id="register"  class="btn btn-primary btn-block btn-large">Register</button></td></tr>

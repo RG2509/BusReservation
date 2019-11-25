@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -27,9 +28,12 @@ gender varchar(10));*/
 
 public class Passenger {
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)     
-	private int p_id;
+   // @GeneratedValue(strategy = GenerationType.AUTO)     
+	private long p_id;
           private String p_name;
+          
+          
+          @Column(name="p_mobileno")
           private String mobile_no;
           private String gender;
           @ManyToOne
@@ -44,14 +48,14 @@ public class Passenger {
 	 */
       	
 		
-		public int getP_id() {
-			return p_id;
-		}
-		public void setP_id(int p_id) {
-			this.p_id = p_id;
-		}
 		public String getP_name() {
 			return p_name;
+		}
+		public long getP_id() {
+			return p_id;
+		}
+		public void setP_id(long p_id) {
+			this.p_id = p_id;
 		}
 		public void setP_name(String p_name) {
 			this.p_name = p_name;

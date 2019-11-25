@@ -16,10 +16,7 @@ password varchar (100) not null
 @Entity
 @Table(name="Users")
 public class Users {
-	
-	
-
-    private String fullname;
+	private String fullname;
     private String mobile;
     @Id
     private String email;

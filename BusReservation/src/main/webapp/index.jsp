@@ -198,8 +198,8 @@ padding: 4px 10px 4px;
                 <a href="userlogin.do">USER LOGIN</a>
                 <a href="userregister.do">USER SIGNUP</a>
                <a href="searchbus.do">SEARCH</a>
-                 <a href="booking.do">BOOKING</a>
-                
+                 <a href="booking1.do">BOOKING</a>
+               <a href="cancel_booking.do">Cancel Booking</a>
                  <a href="aboutus.do">ABOUT US</a>
                  <a href="contact-us.do">CONTACT US</a>
                <!--  <li><a href="#about">About</a></li> -->
