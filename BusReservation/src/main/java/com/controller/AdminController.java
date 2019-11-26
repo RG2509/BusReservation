@@ -63,7 +63,7 @@ public class AdminController {
 		  }
 	
 	
-	  @RequestMapping(value = "/logout", method = RequestMethod.GET)
+	  @RequestMapping(value = "/adminlogout", method = RequestMethod.GET)
 		public ModelAndView userlogout(HttpServletRequest request, HttpServletResponse response) {
 			 HttpSession session =request.getSession(false);
 			 session.invalidate();

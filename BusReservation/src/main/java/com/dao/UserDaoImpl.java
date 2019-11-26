@@ -1,3 +1,4 @@
+
 package com.dao;
 
 import java.util.ArrayList;
@@ -156,6 +157,25 @@ public class UserDaoImpl implements UserDaoIntf {
 		}
 		return flag;
 	}
+
+	public Bookings makePayment(Bookings bookings) {
+		Bookings nbooking =null;
+	    try {
+	    String bid = bookings.getBooking_id();
+	    
+	    System.out.println(bookings);
+		/*em.getTransaction().begin( ); */
+		em.persist(bookings);
+		nbooking = em.find(Bookings.class, bid);
+		//em.getTransaction().commit();
+		//em.close();
+		System.out.println("end");
+
+	    }
+	    catch(Exception e) { System.out.println("Error:"+e);  }
+	    return nbooking;
+	}
+	
 	}
 
 	

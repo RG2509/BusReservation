@@ -23,6 +23,7 @@ import com.model.Admin;
 import com.model.Bookings;
 import com.model.Bus;
 import com.model.Passenger;
+import com.model.Payment;
 import com.model.Users;
 import com.service.AdminServiceIntf;
 import com.service.UserServiceIntf;
@@ -76,7 +77,7 @@ public class Usercontroller {
 		Users user = userservice.validateUser(iuser);
 		System.out.println("user=" + user);
 		if (user != null) {
-			mav = new ModelAndView("success");
+			mav = new ModelAndView("passengerform");//success
 			// mav.addObject("password",iuser.getPassword());
 			// session manage
 			HttpSession session = request.getSession();
@@ -88,6 +89,18 @@ public class Usercontroller {
 		}
 		return mav;
 	}
+	
+	  @RequestMapping(value = "/userlogout", method = RequestMethod.GET)
+			public ModelAndView userlogout(HttpServletRequest request, HttpServletResponse response) {
+				 HttpSession session =request.getSession(false);
+				 session.invalidate();
+				 ModelAndView mav = new ModelAndView("userlogin");
+				 mav.addObject("user", new Users());
+				// mav.addObject("admin", new Admin());
+				 return mav;
+			 }
+	  
+	
 	 @RequestMapping(value = "/contact-us", method = RequestMethod.GET)
 	  public ModelAndView showcontact(HttpServletRequest request, HttpServletResponse response) {
 	    ModelAndView mav = new ModelAndView("contact-us");
@@ -168,7 +181,7 @@ public class Usercontroller {
 		bookings.setDt_of_booking(dtbooking);
 		bookings.setNo_of_passengers(no_of_passengers);
 		bookings.setTotal_fare(no_of_passengers*fare);
-		bookings.setBooking_id("B"+new Date().getTime());
+		
 		
 		
 		Users users = new Users();
@@ -180,7 +193,8 @@ public class Usercontroller {
 		
 		session.setAttribute("bookings", bookings);
 		
-		ModelAndView mav = new ModelAndView("passengerform");
+		ModelAndView mav = new ModelAndView("userlogin");//passengerform
+		
 		mav.addObject("booking",bookings);
 		return mav;
 		 
@@ -206,14 +220,18 @@ public class Usercontroller {
 		  Bookings bookings =(Bookings)session.getAttribute("bookings");
 		  bookings.getPassengers().add(passenger);
 		  passenger.setBookings(bookings);
+		  bookings.setBooking_id("B"+new Date().getTime());
+		  
 		  session.setAttribute("booking", bookings);
 		  
-		  
-		  int flag = userservice.addBook(bookings);
-		  System.out.println(flag);
-		  ModelAndView mav = new ModelAndView("makepayment");
+		  System.out.println("success");
+		/*
+		 * int flag = userservice.addBook(bookings); if(flag>0) { // booking done
+		 * 
+		 * session.removeAttribute("booking"); } System.out.println(flag);
+		 */  ModelAndView mav = new ModelAndView("makepayment");
 		  mav.addObject("booking",bookings);
-return mav;
+          return mav;
 		 
 			
 	 }
@@ -222,11 +240,41 @@ return mav;
 		public ModelAndView makepayment(HttpServletRequest request,HttpServletResponse response, HttpSession session) throws ParseException {
 	    
 		 // read payment info and then persist :  booking , passenger , payment
-		
 		 
-		 ModelAndView mav = new ModelAndView("mybill");
-		// mav.addObject("booking",bookings);
-		 return mav;
+				 String card_type = request.getParameter("card_type");
+			 System.out.println("card type"+card_type);
+			String card_number=(request.getParameter("card_number"));
+			 System.out.println("card number:"+card_number);
+
+		
+			 String name = request.getParameter("name");
+			 System.out.println(name);
+			 /*int cvv = Integer.parseInt(request.getParameter("cvv"));
+		
+			 SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy-MM-dd");
+			 Date expiry_date = formatter1.parse(request.getParameter("expiry_date"));*/
+			 
+			 Bookings bookings =(Bookings)session.getAttribute("booking");
+			 
+			 Payment payment = new Payment();
+			 payment.setPayment_id(new Date().getTime());
+			 payment.setCard_number(card_number);
+			 payment.setCard_type(card_type);
+			 payment.setName(name);
+	         payment.setBookings(bookings);
+		     bookings.setPayment(payment);
+			 
+			//int flag = userRegisterService.addbook(booking);
+		    //System.out.println(flag);
+			  
+		    
+		  
+		     Bookings nBookings=userservice.makePayment(bookings);
+			System.out.println("flag1="+nBookings);
+		 
+		   ModelAndView mav = new ModelAndView("mybill");
+		   mav.addObject("booking",nBookings);
+		   return mav;
 			
 			
 	 }

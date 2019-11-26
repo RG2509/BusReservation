@@ -5,33 +5,6 @@
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<!-- <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-<form method="POST" action="userlogin.do"  modelAttribute="user" >
-<table>
-<tr>
-<td>Email Id</td>
-<td><input name="Email" type="text" id="email"/></td>
-</tr>
-
-<tr>
-<td>Password</td>
-<td><input name="Password" type="password" id="password"/></td>
-</tr>
-
-<tr>
-<td colspan="2">
-<input type="submit" value="submit"/>
-</td>
-</tr>
-</table>
-</form>
-</body>
-</html> -->
 
 
 
@@ -89,9 +62,52 @@ var password = document.getElementById("password").value;
     box-shadow: inset 0 -5px 45px rgba(100,100,100,0.2), 0 1px 1px rgba(255,255,255,0.2);
   
 }
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+.topnav a:hover {
+  background-color: #f5df61;
+  color: black;
+}
+
+body {
+    text-align: center;
+    background-image: url("img/bus.jpg");
+}
+   
+background-image: url("img/bus.jpg");   
+text-align:center;color:yellow;
+font-family: Arial, Helvetica, sans-serif;    
+ box-sizing: border-box;
+
+  font-family: Arial, Helvetica, sans-serif;
+    }
   </style> 
 </head>
-<body class="background">
+<body>
+<div class="topnav">
+ 
+    
+                <a  href="adminlogin.do">ADMIN LOGIN</a>
+                <a href="userlogin.do">USER LOGIN</a>
+                <a href="userregister.do">USER SIGNUP</a>
+               <a href="searchbus.do">SEARCH</a>
+                 <a href="booking1.do">BOOKING</a>
+                 <a href="logout.do">logout</a>
+                 <a href="aboutus.do">ABOUT US</a>
+                 <a href="contact-us.do">CONTACT US</a>
+               <!--  <li><a href="#about">About</a></li> -->
+              
+</div>
     <div class="form1">
         <h1>Login</h1>
         <form  method="POST" action="userlogin.do"  modelAttribute="user"   onsubmit="return validate()">
@@ -103,7 +119,7 @@ var password = document.getElementById("password").value;
         <tr><td>    <button type="submit" id="login" name="login" class="btn btn-primary btn-block btn-large" >Login</button></td></tr>
         </table>
         </form>
-        <hr>
+        
         <b>${status}</b>
     </div>
 </body>

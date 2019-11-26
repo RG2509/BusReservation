@@ -6,25 +6,69 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Buswala | booking</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+#bus {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+#bus td, #bus th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+.btn{
+  float: right;
+  width: 20%;
+  padding: 10px;
+  background: #f5df61;
+  color: black;
+  font-size: 17px;
+  border: 1px solid black;
+ margin-bottom: 10px;
+  cursor: pointer;
+}
+#bus th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #f5df61;
+  color: black;
+}
+.input2 { 
+    width: 40%; 
+    margin-bottom: 10px; 
+    background: #f5df61;
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-size: 13px;
+    color: black;
+    text-shadow: 1px 1px 1px black;
+    border: 1px solid rgba(0,0,0,0.3);
+    border-radius: 4px;
+    box-shadow: inset 0 -5px 45px rgba(100,100,100,0.2), 0 1px 1px rgba(255,255,255,0.2);
+    margin-top: 30px;
+    margin-left: 275px;
+    margin-bottom: 30px;
+  
+}
+
+.button2{
+background-color: black;
+color: white;
+padding: 10px 10px 10px 10px;
+
+}
+.button2:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+</style>
 </head>
 <body>
 
-<h1>Book bus</h1>
-   <form method="post" action="booking1.do">
-   Source:
-  <input type="text" name="source" id="source" class="input2" />&nbsp;&nbsp;&nbsp;
-  Destination
-  <input type="text" name="destination" id="destination" class="input2" />&nbsp;&nbsp;&nbsp;
-  Journey date:
-   <input type="date" name="dt_of_booking" id=" dt_of_booking" class="input3" />&nbsp;&nbsp;&nbsp;
-   Number of Passengers:
- <input type="text" name="no_of_passengers" id="no_of_passengers" class="input4" />&nbsp;&nbsp;&nbsp;
-  <br>
-   <input type="submit" value="Search Bus">
-    </form>
-  
-  <hr>
+
 
 <table id="bus">
   <tr>
@@ -39,6 +83,7 @@
     <th>Arrival time</th>
     <th>Route</th>
     <th>Distance</th>
+    <th>Book Bus</th>
   </tr>
  
 
@@ -59,7 +104,7 @@
              <td><c:out value="${bus.arrival_time}"/> </td>
             <td><c:out value="${bus.route.route_id}"/> </td>  
              <td><c:out value="${bus.route.distance}"/> </td>  
-              <td><input type="submit" value="Book Now...."> </td>
+              <td><input type="submit" class="button2" value="Book Now...."> </td>
            </tr>
    </div>
   </form>

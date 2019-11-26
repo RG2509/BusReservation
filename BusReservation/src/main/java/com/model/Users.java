@@ -1,6 +1,13 @@
 package com.model;
 
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -22,8 +29,21 @@ public class Users {
     private String email;
     private String password;
 
+    @OneToMany
+    @JoinColumn(name="email")
+    List<Bookings> bookings = new ArrayList<Bookings>();
    
-    public String getFullname() {
+    
+    
+    public List<Bookings> getBookings() {
+		return bookings;
+	}
+
+	public void setBookings(List<Bookings> bookings) {
+		this.bookings = bookings;
+	}
+
+	public String getFullname() {
 		return fullname;
 	}
 

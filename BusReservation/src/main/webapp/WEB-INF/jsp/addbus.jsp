@@ -61,7 +61,7 @@
         
   <ul>
                
-                <li><a href="logout.do">Logout</a></li>
+                <li><a href="adminlogout.do">Logout</a></li>
                 <li><a href="addroute.do">Update route</a></li>
                 <li><a href="aviewbus.do">View bus</a></li>
               

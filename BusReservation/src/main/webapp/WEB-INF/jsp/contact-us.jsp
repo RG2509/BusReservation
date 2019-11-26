@@ -8,18 +8,42 @@
 * {
   box-sizing: border-box;
 }
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+.topnav a:hover {
+  background-color: #f5df61;
+  color: black;
+}
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+ 
+    background-image: url("img/bus.jpg");
+
 }
 
 /* Style the header */
-header {
-  background-color: #dbc2f1;
+ header {
+ 
   padding: 30px;
   text-align: center;
   font-size: 35px;
-  color: white;
+  color: black;
+} 
+
+h2{
+ font-family: "Comic Sans MS", cursive, sans-serif;
+ color: black;
 }
 
 /* Container for flexboxes */
@@ -53,12 +77,16 @@ article {
 }
 
 /* Style the footer */
+
+
 footer {
   background-color: #777;
-  padding: 10px;
+  padding: 2px;
   text-align: center;
   color: white;
+  margin-top: 160px;
 }
+
 
 /* Responsive layout - makes the menu and the content (inside the section) sit on top of each other instead of next to each other */
 @media (max-width: 600px) {
@@ -70,17 +98,31 @@ footer {
 </style>
 </head>
 <body>
-
+<div class="topnav">
+ 
+    
+                <a  href="adminlogin.do">ADMIN LOGIN</a>
+                <a href="userlogin.do">USER LOGIN</a>
+                <a href="userregister.do">USER SIGNUP</a>
+               <a href="searchbus.do">SEARCH</a>
+                 <a href="booking1.do">BOOKING</a>
+                 <a href="logout.do">logout</a>
+                 <a href="aboutus.do">ABOUT US</a>
+                 <a href="contact-us.do">CONTACT US</a>
+               <!--  <li><a href="#about">About</a></li> -->
+              
+</div>
+  
 
 <header>
-  <h2>Contact Us</h2>
+  <h2><i>Contact Us</i></h2>
 </header>
 
 <section>
  
   
   <article>
-    <h1>BUSWALA.COM</h1>
+
     <p>If you like what you see, why wait? Simply send us your contact information, and we'll not only
      provide you with fully customised details of how we can help you develop your company's potential, 
     but you'll also be the first to hear about our new products and developments.</p>
@@ -89,8 +131,8 @@ footer {
 </section>
 
 <footer>
-  <p>Footer</p>
+  <p> &copy Copyrights.All rights reserved.</p><br>
+  <a href="index.jsp">Buswala | LTI</a>
 </footer>
-
 </body>
 </html>

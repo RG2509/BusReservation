@@ -1,48 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<!-- <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-<form id="regForm" modelAttribute="user" action="userregister.do" method="post">
-<table>
-
-<tr>
-<td>Full Name</td>
-<td><input  type="text" name="fullname" id="fullname"/></td>
-</tr>
-
-<tr>
-<td>mobile</td>
-<td><input type="text" name="mobile"  id="mobile"/></td>
-</tr>
-
-<tr>
-<td>Email</td>
-<td><input type="text" name="email"  id="email"/></td>
-</tr>
-
-<tr>
-<td>Password</td>
-<td><input type="password" name="Password"  id="password"/></td>
-</tr>
-
-<tr>
-<td colspan="2">
-<input type="submit" value="submit"/>
-</td>
-</tr>
-</table>
-</form>
-
-</body>
-</html> -->
-
-
-
 
 <html>
 <head>
@@ -127,7 +85,6 @@ function valid(){
 		res=false;
 	}
 	
-	
 	return res;
 
 } 
@@ -135,6 +92,28 @@ function valid(){
     
 
 <style>
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+.topnav a:hover {
+  background-color: #f5df61;
+  color: black;
+}
+
+body {
+    text-align: center;
+    background-image: url("img/bus.jpg");
+}
 .input1 { 
     width: 100%; 
     margin-bottom: 10px; 
@@ -153,7 +132,21 @@ function valid(){
 </style>
    
 </head>
-<body class="background">
+<body>
+<div class="topnav">
+ 
+    
+                <a  href="adminlogin.do">ADMIN LOGIN</a>
+                <a href="userlogin.do">USER LOGIN</a>
+                <a href="userregister.do">USER SIGNUP</a>
+               <a href="searchbus.do">SEARCH</a>
+                 <a href="booking1.do">BOOKING</a>
+                 <a href="logout.do">logout</a>
+                 <a href="aboutus.do">ABOUT US</a>
+                 <a href="contact-us.do">CONTACT US</a>
+               <!--  <li><a href="#about">About</a></li> -->
+              
+</div>
         
 
 
@@ -179,7 +172,7 @@ function valid(){
          
           </table>
         </form>
-        <hr>
+        
         <b>${status}</b>
     </div>
    

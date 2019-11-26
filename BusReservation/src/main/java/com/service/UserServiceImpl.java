@@ -65,6 +65,11 @@ public class UserServiceImpl implements UserServiceIntf {
 			return userdao.cancelBooking(booking_id,email);
 			
 		}
+	 	 @Transactional
+		public Bookings makePayment(Bookings bookings) {
+			
+			return userdao.makePayment(bookings);
+		}
 	 	 
 	 
 }

@@ -24,6 +24,7 @@ header {
 </head>
 <body background="img/bus.jpg">
 
+<a href="adminlogout.do">Logout</a>
     <header>
         <h2><i>Welcome Admin</i></h2>
       </header>

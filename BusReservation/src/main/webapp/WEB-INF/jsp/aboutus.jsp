@@ -10,18 +10,41 @@
 * {
   box-sizing: border-box;
 }
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+.topnav a:hover {
+  background-color: #f5df61;
+  color: black;
+}
+
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+  background-image: url("img/bus.jpg");
 }
 
 /* Style the header */
 header {
-  background-color: #dbc2f1;
+  
   padding: 30px;
   text-align: center;
   font-size: 35px;
-  color: white;
+  color: black;
+}
+
+h2{
+ font-family: "Comic Sans MS", cursive, sans-serif;
+ color: black;
 }
 
 /* Container for flexboxes */
@@ -57,9 +80,10 @@ article {
 /* Style the footer */
 footer {
   background-color: #777;
-  padding: 10px;
+  padding: 2px;
   text-align: center;
   color: white;
+  margin-top: 200px;
 }
 
 /* Responsive layout - makes the menu and the content (inside the section) sit on top of each other instead of next to each other */
@@ -69,34 +93,50 @@ footer {
     flex-direction: column;
   }
 }
+
+
 </style>
 
 
 </head>
 <body>
-
+<div class="topnav">
+ 
+    
+                <a  href="adminlogin.do">ADMIN LOGIN</a>
+                <a href="userlogin.do">USER LOGIN</a>
+                <a href="userregister.do">USER SIGNUP</a>
+               <a href="searchbus.do">SEARCH</a>
+                 <a href="booking1.do">BOOKING</a>
+                 <a href="logout.do">logout</a>
+                 <a href="aboutus.do">ABOUT US</a>
+                 <a href="contact-us.do">CONTACT US</a>
+               <!--  <li><a href="#about">About</a></li> -->
+              
+</div>
 
 <header>
-  <h2>About Us</h2>
+  <h2><i>About Us</i></h2>
 </header>
 
 <section>
  
   
   <article>
-    <h1>BUSWALA.COM</h1>
-    <p>BUSWALA is India’s largest online bus ticketing platform that has transformed bus travel in the country by 
-    bringing ease and convenience to millions of Indians who travel using buses. Founded in 2006,
-     redBus is part of India’s leading online travel company MakeMyTrip Limited (NASDAQ: MMYT). 
+    
+    <p>BUSWALA is India's largest online bus ticketing platform that has transformed bus travel in the country by 
+    bringing ease and convenience to many Indians who travel using buses. Founded in 2006,
+     Buswala is part of India's leading company LTI. 
      By providing widest choice, superior customer service, lowest prices and unmatched benefits,
-      redBus has served over 8 million customers. 
-    redBus has a global presence with operations across Indonesia, Singapore, Malaysia, Colombia and Peru apart from India</p>
+     Buswala has served many customers. 
+    </p>
     <p></p>
   </article>
 </section>
 
 <footer>
-  <p>Footer</p>
+  <p> &copy Copyrights.All rights reserved.</p><br>
+  <a href="index.jsp">Buswala | LTI</a>
 </footer>
 
 

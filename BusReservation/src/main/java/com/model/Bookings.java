@@ -42,6 +42,7 @@ public class Bookings {
 	@ManyToOne
 	@JoinColumn(name="email")
 	private Users user;
+	private String status;
 	
 	
 	@Temporal(TemporalType.DATE)
@@ -52,11 +53,29 @@ public class Bookings {
 	private String pick_loc;
 	private String drop_loc;
 	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="booking_id")
+	private Payment payment;
+	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="booking_id")
 	private List<Passenger> passengers = new ArrayList<Passenger>();
 	
 	
+	
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public Payment getPayment() {
+		return payment;
+	}
+	public void setPayment(Payment payment) {
+		this.payment = payment;
+	}
 	public List<Passenger> getPassengers() {
 		return passengers;
 	}

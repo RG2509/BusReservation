@@ -36,4 +36,8 @@ public interface UserDaoIntf {
 
 
 		int addbook(Bookings bookings);
+
+
+
+		Bookings makePayment(Bookings bookings);
 }

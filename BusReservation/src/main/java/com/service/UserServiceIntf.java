@@ -29,4 +29,7 @@ public boolean registerPassenger(Users user) ;
 	
 	public boolean cancelBooking(String booking_id, String email);
 
+
+	public Bookings makePayment(Bookings bookings);
+
 }
