@@ -75,10 +75,42 @@
     box-shadow: inset 0 -5px 45px rgba(100,100,100,0.2), 0 1px 1px rgba(255,255,255,0.2);
   
 }
+
+   ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover {
+    background-color: #111;
+  }
 </style>
     
 </head>
-<body class="background">
+<body  background="img/bus.jpg">
+
+  <ul>
+               
+                <li><a href="adminlogout.do">Logout</a></li>
+                <li><a href="addbus.do">Add bus</a></li>
+                <li><a href="aviewbus.do">View bus</a></li>
+              
+              </ul>
         
 
 

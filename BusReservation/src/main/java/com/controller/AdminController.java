@@ -85,13 +85,7 @@ public class AdminController {
 	 
 	  @RequestMapping(value = "/addbus", method = RequestMethod.POST)
 	  public ModelAndView addUser2(  @ModelAttribute("bus") Bus bus , @RequestParam String route_id) {
-		/*
-		 * String id = bus.getBus_id(); String name =bus.getBus_name(); String
-		 * bus_no=bus.getBus_no(); String bus_type=bus.getBus_type(); int
-		 * seats=bus.getNo_of_seats(); int fare=bus.getFare(); String
-		 * departure_time=bus.getDeparture_time(); String
-		 * arrival_time=bus.getArrival_time();
-		 */
+		
 		System.out.println(route_id);
 		
 		Route route=new Route();

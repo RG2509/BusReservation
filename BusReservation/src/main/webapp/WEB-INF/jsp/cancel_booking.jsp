@@ -129,7 +129,7 @@
 <div class="row">
 
 <div class="column side2">
-    <center>CANCEL BOOKING</center>
+    
 	<form id="cancelForm" modelAttribute="book" action="cancel_booking.do" method="post" onsubmit="valid()" >
 		<table align="center">
 			<tr>

@@ -77,9 +77,8 @@ public class Usercontroller {
 		Users user = userservice.validateUser(iuser);
 		System.out.println("user=" + user);
 		if (user != null) {
-			mav = new ModelAndView("passengerform");//success
-			// mav.addObject("password",iuser.getPassword());
-			// session manage
+			mav = new ModelAndView("passengerform");
+			
 			HttpSession session = request.getSession();
 			session.setAttribute("email", iuser.getEmail());
 
@@ -96,7 +95,7 @@ public class Usercontroller {
 				 session.invalidate();
 				 ModelAndView mav = new ModelAndView("userlogin");
 				 mav.addObject("user", new Users());
-				// mav.addObject("admin", new Admin());
+				
 				 return mav;
 			 }
 	  
@@ -139,7 +138,7 @@ public class Usercontroller {
 		    String dt_of_booking1 = request.getParameter("dt_of_booking").trim();
 		  	 Date dt_of_booking =formatter1.parse(dt_of_booking1);
 			 System.out.println("dtbooking:"+dt_of_booking);
-			//no_of_passengers
+			
 			int no_of_passengers  =Integer.parseInt(request.getParameter("no_of_passengers").trim());
 			
 			//store booking required info in 
@@ -166,12 +165,13 @@ public class Usercontroller {
 		 String dest =(String)session.getAttribute("destination");
 		 Date dtbooking =(Date)session.getAttribute("dtbooking");
 		 int no_of_passengers =(Integer)session.getAttribute("no_of_passengers");
+		String Booking_id="B"+(long)new Date().getTime();
 		 
 		 System.out.println("dtbooking:"+dtbooking);
 		 
 		 
 		Bookings bookings = new Bookings();
-		
+		bookings.setStatus("confirmed");
 		Bus b = new Bus();
 		b.setBus_id(busid);
 		bookings.setBus(b);
@@ -181,7 +181,7 @@ public class Usercontroller {
 		bookings.setDt_of_booking(dtbooking);
 		bookings.setNo_of_passengers(no_of_passengers);
 		bookings.setTotal_fare(no_of_passengers*fare);
-		
+		bookings.setBooking_id(Booking_id);
 		
 		
 		Users users = new Users();
@@ -193,7 +193,7 @@ public class Usercontroller {
 		
 		session.setAttribute("bookings", bookings);
 		
-		ModelAndView mav = new ModelAndView("userlogin");//passengerform
+		ModelAndView mav = new ModelAndView("userlogin");
 		
 		mav.addObject("booking",bookings);
 		return mav;
@@ -220,16 +220,12 @@ public class Usercontroller {
 		  Bookings bookings =(Bookings)session.getAttribute("bookings");
 		  bookings.getPassengers().add(passenger);
 		  passenger.setBookings(bookings);
-		  bookings.setBooking_id("B"+new Date().getTime());
+		 
 		  
 		  session.setAttribute("booking", bookings);
 		  
 		  System.out.println("success");
-		/*
-		 * int flag = userservice.addBook(bookings); if(flag>0) { // booking done
-		 * 
-		 * session.removeAttribute("booking"); } System.out.println(flag);
-		 */  ModelAndView mav = new ModelAndView("makepayment");
+		  ModelAndView mav = new ModelAndView("makepayment");
 		  mav.addObject("booking",bookings);
           return mav;
 		 
@@ -249,10 +245,7 @@ public class Usercontroller {
 		
 			 String name = request.getParameter("name");
 			 System.out.println(name);
-			 /*int cvv = Integer.parseInt(request.getParameter("cvv"));
-		
-			 SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy-MM-dd");
-			 Date expiry_date = formatter1.parse(request.getParameter("expiry_date"));*/
+			
 			 
 			 Bookings bookings =(Bookings)session.getAttribute("booking");
 			 
@@ -264,10 +257,7 @@ public class Usercontroller {
 	         payment.setBookings(bookings);
 		     bookings.setPayment(payment);
 			 
-			//int flag = userRegisterService.addbook(booking);
-		    //System.out.println(flag);
-			  
-		    
+			
 		  
 		     Bookings nBookings=userservice.makePayment(bookings);
 			System.out.println("flag1="+nBookings);
@@ -278,22 +268,7 @@ public class Usercontroller {
 			
 			
 	 }
-	/*
-	 * //history
-	 * 
-	 * @RequestMapping(value = "/result", method = RequestMethod.GET) public
-	 * ModelAndView result(HttpSession session){
-	 * 
-	 * String email = (String)session.getAttribute("email");
-	 * 
-	 * List<Bookings> lis = new ArrayList<Bookings>();
-	 * 
-	 * lis = userservice.result(email); System.out.println(lis);
-	 * System.out.println("size"+lis.size()); for(int i = 0; i < lis.size(); i++) {
-	 * System.out.println(lis.get(i)); } ModelAndView mav = new
-	 * ModelAndView("result"); mav.addObject("booking_list",lis); return mav; }
-	 */
-
+	
 	
 	 
 	 @RequestMapping(value = "/cancel_booking", method = RequestMethod.GET)

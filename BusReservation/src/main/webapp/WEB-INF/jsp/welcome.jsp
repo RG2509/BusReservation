@@ -10,7 +10,7 @@
   border: 3px solid #f5e486;
   margin-left: 100px;
   margin-right: 100px;
-  background-color: black;
+  background-color: white;
   color: white;
 }
 header {

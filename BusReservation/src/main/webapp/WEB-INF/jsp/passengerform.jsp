@@ -8,18 +8,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
 
-<script>
+<!-- <script>
 
 function validate()
 {
-	alert("hello");
 	
-
 var p_name= document.getElementById("p_name").value;
 var mobile_no = document.getElementById("p_mobile").value;
 var gender= document.getElementById("gender").value;
-var mobileRGEX =  /^{10}$/;
-var mobResult = mobileRGEX.test(mobile_no);
+/* var mobileRGEX =  /^{10}$/; */
+/* var mobResult = mobileRGEX.test(mobile_no); */
 
 
 document.getElementById('error-p_name').innerHTML = '';
@@ -38,11 +36,11 @@ document.getElementById('error-gender').innerHTML = '';
 		 document.getElementById('error-mobile_no').innerHTML = "Mobile number cannot be blank";
 		 return false;
 	 }
-   else if(!mobResult)
+ /*   else if(!mobResult)
 	{
 	 document.getElementById('error-mobile_no').innerHTML = "mobile format is wrong";
 	 return false;
-	} 
+	}  */
     else if(gender=='')
 	 {
 		 document.getElementById('error-gender').innerHTML = "Gender cannot be blank";
@@ -50,12 +48,12 @@ document.getElementById('error-gender').innerHTML = '';
 	 }
    
     else{
-    	return true;
+    	return false;
     	}
 }
 
 
- </script>
+ </script> -->
  <style>
 
 .input1 { 
@@ -125,10 +123,8 @@ form {
     
     <div class="topnav">
  
-    
                 <a  href="index.jsp">HOME</a>
-               
-                
+              
                  <a href="aboutus.do">ABOUT US</a>
                  <a href="contact-us.do">CONTACT US</a>
                   <a href="userlogout.do">LOGOUT</a>
@@ -139,23 +135,20 @@ form {
 
 	 <div class="form1">
 	 <h1 style="align-content: center;">Passenger Form</h1>
-     <form id="regForm"  action="booking3.do" modelAttribute="p"  method="post"  >
+     <form id="regForm"  action="booking3.do" modelAttribute="p"  method="post" >
         
         <table>
         <tr>
         <td>
           <input type="text"  name="p_name" id="p_name"   placeholder="Full Name"  class="input1"/></td></tr>
-   <tr><td> <div id="error-p_name" style="color: red"></div></td>
-          </tr>
+   
          <tr><td>  <input type="text"  name="mobile_no"  id="p_mobile" placeholder="Mobile Number"  class="input1"/></td></tr>
-          <tr> <td><div id="error-mobile_no" style="color: red"></div></td>
-           </tr>
+          
           <tr><td> <input  type="radio" name="gender"  id="gender" placeholder="Gender" value="male" checked/>Male
        <input  type="radio" name="gender"  id="gender" placeholder="Gender" value="female"/>Female</td>
           </tr>
-         <tr> <td><div id="error-gender" style="color: red"></div></td>
-
-          <tr><td> <button type="submit" id="register"  class="btn btn-primary btn-block btn-large" onclick="return validate()">Register</button></td></tr>
+        
+          <tr><td> <button type="submit" id="register"  class="btn btn-primary btn-block btn-large" >Register</button></td></tr>
          
          
           </table>

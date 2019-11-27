@@ -69,7 +69,8 @@ public class UserDaoImpl implements UserDaoIntf {
 	public List<Bus> busbooking(String source, String destination, Date dt_of_booking, int no_of_passengers) {
 		System.out.println(source + "\n" + destination + "\n" + dt_of_booking + "\n" + no_of_passengers);
 		String sql = "select b FROM Bus b, Route r where r.source=:source and r.destination=:destination and b.route.route_id=r.route_id";
-		String sql1 = "select sum(k.no_of_passengers) FROM Bus b, Bookings k where b.bus_id=k.bus.bus_id and b.bus_id=:bid and k.dt_of_booking=:dt_of_booking";
+		//changes
+		String sql1 = "select sum(k.no_of_passengers) FROM Bus b, Bookings k where b.bus_id=k.bus.bus_id and b.bus_id=:bid and k.dt_of_booking=:dt_of_booking and k.status='confirmed'";
 		List<Bus> finallist = new ArrayList<Bus>();
 
 		@SuppressWarnings("unchecked")
@@ -89,7 +90,7 @@ public class UserDaoImpl implements UserDaoIntf {
 				} catch (Exception e) {
 				}
 			}
-			// int totlreservedseat=(Integer)em.createQuery(sql1).getResultList().get(0);
+			
 			System.out.println("totalseat12:" + totalseat + " \ntotlreservedseat:" + totlreservedseat
 					+ "\nno_of_passengers:" + no_of_passengers + "\n-------\n");
 			if ((totalseat - totlreservedseat) >= no_of_passengers)
@@ -102,26 +103,6 @@ public class UserDaoImpl implements UserDaoIntf {
 	}
 
 	
-	/*
-	 * public List<Bookings> result(String email) {
-	 * 
-	 * System.out.println("email:"+email);
-	 * 
-	 * @SuppressWarnings("unchecked")
-	 * 
-	 * List<Bookings> lis = new ArrayList<Bookings>(); lis =
-	 * em.createQuery("select f from Booking f where f.user.email_id=:email_id")
-	 * .setParameter("email_id",email_id).getResultList(); lis = em.
-	 * createNativeQuery("select booking0_.booking_id as booking_id1_1_, booking0_.b_class as b_class2_1_, booking0_.booking_date as booking_date3_1_, booking0_.flight_id as flight_id6_1_, booking0_.journey_date as journey_date4_1_, booking0_.passenger_count as passenger_count5_1_, "
-	 * +
-	 * "booking0_.email_id as email_id7_1_ from BOOKING_MASTER booking0_ where booking0_.email_id=:email"
-	 * ).setParameter("email", email.getResultList(); System.out.println(lis);
-	 * 
-	 * 
-	 * return lis; }
-	 * 
-	 * 
-	 */
 
 	public int addbook(Bookings bookings){
 		
@@ -143,18 +124,18 @@ public class UserDaoImpl implements UserDaoIntf {
 	public boolean cancelBooking(String booking_id, String email) {
 		boolean flag=false;
 	
-		Query query = em.createNativeQuery("delete from bookings where booking_id=:booking_id and email=:email" );
+		Query query = em.createNativeQuery("update bookings set status='cancel'"
+				+"where booking_id=:booking_id and email=:email and dt_of_booking>:curdate");//
 		query.setParameter("booking_id", booking_id);
 		query.setParameter("email", email);
+		query.setParameter("curdate",new Date());//
 		int res=query.executeUpdate();
 		
 		System.out.println(res);
 		if(res>0){
 			flag=true;
 		}
-		else{
-			System.out.println("Unable to cancel booking "+booking_id);
-		}
+		
 		return flag;
 	}
 
@@ -164,11 +145,10 @@ public class UserDaoImpl implements UserDaoIntf {
 	    String bid = bookings.getBooking_id();
 	    
 	    System.out.println(bookings);
-		/*em.getTransaction().begin( ); */
+		
 		em.persist(bookings);
 		nbooking = em.find(Bookings.class, bid);
-		//em.getTransaction().commit();
-		//em.close();
+		
 		System.out.println("end");
 
 	    }

@@ -35,6 +35,22 @@ http://www.springframework.org/schema/mvc/spring-mvc.xsd">  -->
 		<property name="password" value="hr" />
    </bean>
    
+   <bean class = "org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+    
+    <!-- <property name = "exceptionMappings">
+         <props>
+            <prop key ="org.hibernate.exception.ConstraintViolationException">
+               ExceptionPage
+            </prop>
+         </props>
+      </property> -->
+
+   <property name = "defaultErrorView" value = "error"/>
+
+</bean> 
+
+   
+   
    <bean id="entityManagerFactory" 
       class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
 	  p:packagesToScan="com.model"

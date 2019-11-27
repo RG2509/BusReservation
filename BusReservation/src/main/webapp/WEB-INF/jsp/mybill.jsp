@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-God is good....
+
 <hr> Booking Inforamtion
 <br>
 Booking Id :  ${booking.booking_id} 

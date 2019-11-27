@@ -46,7 +46,8 @@
      </script>
      
      <style>
-     .input1 { 
+
+  .input1 { 
     width: 100%; 
     margin-bottom: 10px; 
     background: rgba(253, 253, 253, 0.3);
@@ -61,21 +62,53 @@
     box-shadow: inset 0 -5px 45px rgba(100,100,100,0.2), 0 1px 1px rgba(255,255,255,0.2);
   
 }
-     </style>
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+.topnav a:hover {
+  background-color: #f5df61;
+  color: black;
+}
+
+body {
+    text-align: center;
+    background-image: url("img/bus.jpg");
+}
+   
+background-image: url("img/bus.jpg");   
+text-align:center;color:yellow;
+font-family: Arial, Helvetica, sans-serif;    
+ box-sizing: border-box;
+
+  font-family: Arial, Helvetica, sans-serif;
+    }
+  </style> 
+    
 </head>
 <body>
 <div class="topnav">
  
     
-                <a  href="adminlogin.do">ADMIN LOGIN</a>
+               <!--  <a  href="adminlogin.do">ADMIN LOGIN</a>
                 <a href="userlogin.do">USER LOGIN</a>
                 <a href="userregister.do">USER SIGNUP</a>
                <a href="searchbus.do">SEARCH</a>
                  <a href="booking1.do">BOOKING</a>
                  <a href="logout.do">logout</a>
                  <a href="aboutus.do">ABOUT US</a>
-                 <a href="contact-us.do">CONTACT US</a>
+                 <a href="contact-us.do">CONTACT US</a> -->
                <!--  <li><a href="#about">About</a></li> -->
+               
+               <a href="index.jsp">HOME</a>
               
 </div>
     <div class="form1">

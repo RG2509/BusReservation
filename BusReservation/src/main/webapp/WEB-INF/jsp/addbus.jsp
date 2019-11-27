@@ -57,7 +57,7 @@
 
     
 </head>
-<body class="background">
+<body  background="img/bus.jpg">
         
   <ul>
                
