@@ -101,7 +101,7 @@ public class AdminController {
 	    return mav;
 	    }
 	    else {
-	    	ModelAndView mav = new ModelAndView("adminlogin");
+	    	ModelAndView mav = new ModelAndView("addbus");
 	        mav.addObject("bus", new Bus());
 	        mav.addObject("status","Sorry! Registration in incomplete");
 	        return mav;	

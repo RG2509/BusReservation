@@ -56,7 +56,7 @@ public class Usercontroller {
 			mav.addObject("status", "Your Registration is successfully done.....");
 			return mav;
 		} else {
-			ModelAndView mav = new ModelAndView("userregistration");
+			ModelAndView mav = new ModelAndView("userlogin");
 			mav.addObject("user", new Users());
 			mav.addObject("status", "Sorry! Registration in incomplete.....");
 			return mav;
