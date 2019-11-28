@@ -1,0 +1,52 @@
+create table admin(
+email_id varchar(100) not null,
+password varchar(100)not null
+)
+
+
+create table bookings(
+booking_id varchar(100) not null primary key,
+bus_id varchar(100) references bus(bus_id) ,
+email varchar(100) references Users(email),
+dt_of_booking date,
+no_of_passengers int ,
+total_fare int,
+pick_loc  varchar(100),
+drop_loc varchar(100)
+)
+
+create table bus(
+bus_id varchar(100)not null primary key,
+bus_name varchar(100),
+bus_no varchar(100) ,
+bus_type varchar(100),
+no_of_seats int ,
+fare int ,
+departure_time varchar(100),
+arrival_time varchar(100),
+route_id varchar(20) references route(route_id)
+)
+
+create table passenger(
+p_id int  primary key, 
+p_name varchar(100),
+p_mobileno varchar(15),
+gender varchar(10),
+booking_id varchar(100) references bookings(booking_id))
+
+create table route(
+create table route(
+route_id varchar(20) not null primary key,
+source varchar(100) ,
+destination varchar(100) ,
+distance varchar(100) )
+
+
+
+create table Users(
+fullname varchar(100) not null,
+mobile varchar(100),
+email varchar(100) not null primary key,
+password varchar (100) not null
+)
+
